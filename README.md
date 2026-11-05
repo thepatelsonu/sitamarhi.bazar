@@ -1,27 +1,58 @@
-# Sitamarhi Bazar website starter
+# Sitamarhi Bazar
 
-A responsive front-end website for Sitamarhi Bazar.
+A responsive, mobile-first local marketplace website for Sitamarhi Bazar, initially focused on Sitamarhi Town and Dumra.
 
 ## Included
-- Responsive homepage with Sitamarhi Bazar branding and supplied logo
-- Search and category/area filters
-- Sample business cards clearly marked DEMO PREVIEW
-- Merchant listing request form
-- WhatsApp contact handoff placeholder
-- Customer discovery, merchant onboarding and future marketplace sections
+
+- Responsive Sitamarhi Bazar homepage
+- Search, category and area filters
+- Sample businesses clearly marked **DEMO PREVIEW**
+- Merchant listing request form connected to the dedicated Sitamarhi Bazar Supabase project
+- Merchant requests are submitted for review and are not published automatically
+
+## Merchant registration and Supabase
+
+The browser uses the Supabase publishable key in `supabase-config.js`. A publishable key is designed for frontend use. **Never put a Supabase secret key or service-role key in browser code or this repository.**
+
+The form inserts these fields into `public.merchant_listing_requests`:
+
+- `business_name`
+- `owner_name`
+- `phone`
+- `category`
+- `area`
+
+The database must set `status = 'pending'` itself. The public anonymous role should be able to submit only those five fields and must not be able to read, update, delete, or approve submissions.
+
+### Database setup still required
+
+The SQL in `supabase/drafts/merchant_listing_requests.sql` is a **review draft**, not an applied migration. Before production:
+
+1. Confirm the connected Supabase project is `pjphobragavzgfrfdwjn` (Sitamarhi Bazar), not another project.
+2. Install/use the Supabase CLI and initialize the repository if needed.
+3. Generate a migration using `supabase migration new create_merchant_listing_requests`.
+4. Review and move the SQL draft into the generated file under `supabase/migrations/`.
+5. Test the migration and RLS behavior in a development environment.
+6. In Supabase GitHub integration, set the working directory to the repository root (`.`). Keep production deploy disabled until review and tests pass.
+
+The Supabase integration for the new project has not yet been verified from this connected session. Do not enable automatic production deployment until project access and the migration are confirmed.
 
 ## Before publishing
-1. Replace the demo businesses in `script.js` with real, permission-based listings.
-2. Add your official WhatsApp number in `script.js` by replacing `const adminNumber="";` with the number in international format without `+` (India: 91XXXXXXXXXX).
-3. Replace the social profile `href="#"` links in `index.html` with your real Instagram, Facebook and YouTube URLs.
-4. Add your real email/contact details and legal pages.
-5. Test the listing form on mobile.
-6. Do not advertise ordering, payment or delivery as live until those processes are actually operational.
+
+1. Replace demo businesses in `script.js` with real listings only after obtaining permission from each business.
+2. Replace social profile `href="#" ` links in `index.html` with real URLs.
+3. Add real contact details and appropriate privacy/legal information.
+4. Add server-side/admin-only merchant review and approval before showing any submitted merchant publicly.
+5. Consider CAPTCHA or another abuse-control measure before accepting public submissions at scale.
+6. Test the form on mobile and verify both successful submission and failure handling.
+7. Do not advertise online ordering, payment, inventory or delivery as live until those features are operational.
 
 ## Run locally
-Open `index.html` in a browser. No build step is required.
+
+Open `index.html` in a browser. No build step is required. The Supabase client is loaded from a pinned CDN version.
 
 ## Deploy
-Upload the folder to a static hosting service such as Cloudflare Pages or Netlify. For Cloudflare Pages, create a project and deploy the folder contents with no build command; output directory is the project root.
 
-This is a front-end starter, not a connected production marketplace. It does not include a database, merchant login, payment processing, live inventory, or order management.
+Static hosting (Cloudflare Pages or Netlify), with no build command and the repository root as the output directory.
+
+This is an early marketplace frontend. It does not yet include merchant login, admin approval interface, payment processing, live inventory or order management.
