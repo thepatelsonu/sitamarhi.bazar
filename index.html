@@ -25,6 +25,7 @@
       <a href="#categories">Categories</a>
       <a href="#how">How It Works</a>
       <a class="nav-cta" href="#list-business">List Your Business</a>
+      <a href="login.html">Merchant Login</a>
     </nav>
   </div>
 </header>
@@ -110,10 +111,13 @@
    <label>Business / shop name<input name="business" required placeholder="e.g. Sharma Garments"></label>
    <label>Owner / contact person<input name="owner" required placeholder="Your name"></label>
    <label>WhatsApp number<input name="phone" required inputmode="tel" pattern="[0-9+() -]{10,18}" placeholder="Your contact number"></label>
+   <label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
+   <label>Create password<input name="password" type="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters"></label>
    <label>Business category<select name="category" required><option value="">Choose category</option><option>Fashion</option><option>Food</option><option>Electronics</option><option>Jewellery</option><option>Home</option><option>Services</option><option>Other</option></select></label>
    <label>Area<select name="area" required><option value="">Choose area</option><option>Sitamarhi Town</option><option>Dumra</option><option>Other</option></select></label>
-   <button class="submit-btn" type="submit">Send listing request ↗</button>
-   <small>Submitting opens WhatsApp with your details. Your listing is not published automatically.</small>
+   <button class="submit-btn" type="submit">Create account &amp; submit listing ↗</button>
+   <p id="listingMessage" role="status" aria-live="polite"></p>
+   <small>Your account is created securely. Your business listing stays pending until our team reviews it. Already registered? <a class="text-link" href="login.html">Merchant login</a>.</small>
   </form>
  </div>
 </section>
@@ -132,6 +136,6 @@
  </div>
  <div class="container footer-bottom"><span>© <span id="year"></span> Sitamarhi Bazar. Built to support local businesses.</span><span>Prices and availability are confirmed by the merchant.</span></div>
 </footer>
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>
