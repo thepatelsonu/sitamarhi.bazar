@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#176b45">
+  <title>Merchant Dashboard | Sitamarhi Bazar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><img src="assets/sitamarhi-bazar-logo.png" alt="Sitamarhi Bazar logo"><span><strong>Sitamarhi Bazar</strong><small>Merchant dashboard</small></span></a>
+    <nav><a href="index.html">View marketplace</a><button class="nav-cta" id="signOutButton" type="button">Sign out</button></nav>
+  </div>
+</header>
+<main class="section" id="merchantDashboard">
+  <div class="container" style="max-width:760px">
+    <span class="eyebrow">YOUR BUSINESS ACCOUNT</span>
+    <h1 style="color:var(--deep);margin:10px 0 6px">Merchant dashboard</h1>
+    <p style="color:var(--muted)">Signed in as <strong id="merchantEmail"></strong></p>
+    <p id="dashboardMessage" role="status" aria-live="polite"></p>
+    <section class="listing-form" style="margin-top:24px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <h3 style="margin:0">Business registration</h3>
+        <span id="merchantStatus" class="demo-note" data-status="pending">Loading...</span>
+      </div>
+      <div class="steps" style="grid-template-columns:repeat(2,1fr);margin-top:20px">
+        <article><small>BUSINESS NAME</small><h3 id="businessName">Loading...</h3></article>
+        <article><small>OWNER / CONTACT</small><h3 id="ownerName">Loading...</h3></article>
+        <article><small>PHONE</small><h3 id="businessPhone">Loading...</h3></article>
+        <article><small>CATEGORY</small><h3 id="businessCategory">Loading...</h3></article>
+        <article><small>AREA</small><h3 id="businessArea">Loading...</h3></article>
+      </div>
+    </section>
+    <p style="color:var(--muted);font-size:12px;margin-top:18px">Your listing is not public until the Sitamarhi Bazar team approves it. You can sign out securely from this page.</p>
+  </div>
+</main>
+<script type="module" src="auth.js"></script>
+</body>
+</html>
