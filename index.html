@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#176b45">
   <meta name="description" content="Sitamarhi Ki Har Dukaan, Ek Hi Jagah. Discover local shops, products, services and offers in Sitamarhi Town and Dumra, Bihar.">
   <title>Sitamarhi Bazar | Sitamarhi Ki Har Dukaan, Ek Hi Jagah.</title>
-  <link rel="icon" href="assets/sitamarhi-bazar-logo.svg">
+  <link rel="icon" href="assets/sitamarhi-bazar-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="#" aria-label="Sitamarhi Bazar home">
-      <img src="assets/sitamarhi-bazar-logo.svg" alt="Sitamarhi Bazar logo">
+      <img src="assets/sitamarhi-bazar-logo.png" alt="Sitamarhi Bazar logo">
       <span><strong>Sitamarhi Bazar</strong><small>Sitamarhi Ki Har Dukaan, Ek Hi Jagah.</small></span>
     </a>
     <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
@@ -25,7 +25,6 @@
       <a href="#categories">Categories</a>
       <a href="#how">How It Works</a>
       <a class="nav-cta" href="#list-business">List Your Business</a>
-      <a href="login.html">Merchant Login</a>
     </nav>
   </div>
 </header>
@@ -111,13 +110,10 @@
    <label>Business / shop name<input name="business" required placeholder="e.g. Sharma Garments"></label>
    <label>Owner / contact person<input name="owner" required placeholder="Your name"></label>
    <label>WhatsApp number<input name="phone" required inputmode="tel" pattern="[0-9+() -]{10,18}" placeholder="Your contact number"></label>
-   <label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
-   <label>Create password<input name="password" type="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters"></label>
    <label>Business category<select name="category" required><option value="">Choose category</option><option>Fashion</option><option>Food</option><option>Electronics</option><option>Jewellery</option><option>Home</option><option>Services</option><option>Other</option></select></label>
    <label>Area<select name="area" required><option value="">Choose area</option><option>Sitamarhi Town</option><option>Dumra</option><option>Other</option></select></label>
-   <button class="submit-btn" type="submit">Create account &amp; submit listing ↗</button>
-   <p id="listingMessage" role="status" aria-live="polite"></p>
-   <small>Your account is created securely. Your business listing stays pending until our team reviews it. Already registered? <a class="text-link" href="login.html">Merchant login</a>.</small>
+   <button class="submit-btn" type="submit">Send listing request ↗</button>
+   <small>Submitting opens WhatsApp with your details. Your listing is not published automatically.</small>
   </form>
  </div>
 </section>
@@ -129,13 +125,13 @@
 
 <footer class="footer">
  <div class="container footer-main">
-  <div class="footer-brand"><img src="assets/sitamarhi-bazar-logo.svg" alt=""><div><b>Sitamarhi Bazar</b><span>Sitamarhi Ki Har Dukaan, Ek Hi Jagah.</span></div></div>
+  <div class="footer-brand"><img src="assets/sitamarhi-bazar-logo.png" alt=""><div><b>Sitamarhi Bazar</b><span>Sitamarhi Ki Har Dukaan, Ek Hi Jagah.</span></div></div>
   <div><b>Explore</b><a href="#categories">Categories</a><a href="#discover">Local businesses</a><a href="#how">How it works</a></div>
   <div><b>For businesses</b><a href="#list-business">List your shop</a><a href="#list-business">Promote your business</a></div>
   <div><b>Our area</b><span>Sitamarhi Town &amp; Dumra</span><span>Bihar, India</span></div>
  </div>
  <div class="container footer-bottom"><span>© <span id="year"></span> Sitamarhi Bazar. Built to support local businesses.</span><span>Prices and availability are confirmed by the merchant.</span></div>
 </footer>
-<script type="module" src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
