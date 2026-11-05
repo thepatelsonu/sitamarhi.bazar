@@ -19,13 +19,47 @@ document.querySelectorAll("[data-filter]").forEach(btn=>btn.addEventListener("cl
 document.getElementById("areaFilter").addEventListener("change",render);
 document.getElementById("searchButton").addEventListener("click",()=>{query=document.getElementById("searchInput").value.trim().toLowerCase();render();document.getElementById("discover").scrollIntoView({behavior:"smooth"});});
 document.getElementById("searchInput").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("searchButton").click();});
-document.getElementById("listingForm").addEventListener("submit",e=>{
- e.preventDefault();const data=new FormData(e.currentTarget);
- const phone=(data.get("phone")||"").replace(/\D/g,"");
- const message=`Namaste Sitamarhi Bazar! I want to list my business.%0A%0ABusiness: ${encodeURIComponent(data.get("business"))}%0AOwner: ${encodeURIComponent(data.get("owner"))}%0APhone: ${encodeURIComponent(data.get("phone"))}%0ACategory: ${encodeURIComponent(data.get("category"))}%0AArea: ${encodeURIComponent(data.get("area"))}`;
- const adminNumber=""; 
- if(!adminNumber){alert("Website setup note: add your Sitamarhi Bazar WhatsApp number in script.js (adminNumber) before publishing. Your details have not been sent.");return;}
- window.open(`https://wa.me/${adminNumber}?text=${message}`,"_blank","noopener");
+
+const listingForm=document.getElementById("listingForm");
+const listingStatus=document.getElementById("listingStatus");
+const submitButton=listingForm.querySelector('button[type="submit"]');
+listingForm.addEventListener("submit",async e=>{
+ e.preventDefault();
+ listingStatus.textContent="";
+ listingStatus.className="form-status";
+ if(!listingForm.reportValidity()) return;
+ if(!window.sitamarhiBazarSupabase){
+   listingStatus.textContent="The listing form is temporarily unavailable. Please try again later or contact our team.";
+   listingStatus.classList.add("error");
+   return;
+ }
+ const data=new FormData(listingForm);
+ const payload={
+   business_name:String(data.get("business")||"").trim(),
+   owner_name:String(data.get("owner")||"").trim(),
+   phone:String(data.get("phone")||"").trim(),
+   category:String(data.get("category")||"").trim(),
+   area:String(data.get("area")||"").trim()
+ };
+ submitButton.disabled=true;
+ submitButton.textContent="Submitting...";
+ listingStatus.setAttribute("aria-live","polite");
+ try{
+   const {error}=await window.sitamarhiBazarSupabase
+     .from("merchant_listing_requests")
+     .insert(payload);
+   if(error) throw error;
+   listingForm.reset();
+   listingStatus.textContent="Thank you! Your listing request has been received. Our team will review it and contact you. Your shop is not live yet.";
+   listingStatus.classList.add("success");
+ }catch(error){
+   console.error("Merchant listing submission failed:",error);
+   listingStatus.textContent="We couldn't submit your request right now. Please check your internet connection and try again.";
+   listingStatus.classList.add("error");
+ }finally{
+   submitButton.disabled=false;
+   submitButton.textContent="Send listing request ↗";
+ }
 });
 document.getElementById("menuToggle").addEventListener("click",()=>document.getElementById("mainNav").classList.toggle("open"));
 document.querySelectorAll("#mainNav a").forEach(a=>a.addEventListener("click",()=>document.getElementById("mainNav").classList.remove("open")));

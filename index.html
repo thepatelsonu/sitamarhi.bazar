@@ -106,14 +106,15 @@
  <div class="container merchant-grid">
   <div><span class="eyebrow light">ARE YOU A BUSINESS OWNER?</span><h2>Apni dukaan ko<br>online pehchaan dijiye.</h2><p>Get discovered by local customers. Start with a free basic listing and explore paid promotion options as your business grows.</p><ul><li>Showcase your shop and contact details</li><li>Promote products, offers and new arrivals</li><li>Receive direct calls and WhatsApp enquiries</li></ul></div>
   <form class="listing-form" id="listingForm">
-   <h3>List your business</h3><p>Share a few details. Our team will contact you.</p>
-   <label>Business / shop name<input name="business" required placeholder="e.g. Sharma Garments"></label>
-   <label>Owner / contact person<input name="owner" required placeholder="Your name"></label>
+   <h3>List your business</h3><p>Share a few details. Our team will review your request.</p>
+   <label>Business / shop name<input name="business" required minlength="2" maxlength="120" placeholder="e.g. Sharma Garments"></label>
+   <label>Owner / contact person<input name="owner" required minlength="2" maxlength="100" placeholder="Your name"></label>
    <label>WhatsApp number<input name="phone" required inputmode="tel" pattern="[0-9+() -]{10,18}" placeholder="Your contact number"></label>
    <label>Business category<select name="category" required><option value="">Choose category</option><option>Fashion</option><option>Food</option><option>Electronics</option><option>Jewellery</option><option>Home</option><option>Services</option><option>Other</option></select></label>
    <label>Area<select name="area" required><option value="">Choose area</option><option>Sitamarhi Town</option><option>Dumra</option><option>Other</option></select></label>
    <button class="submit-btn" type="submit">Send listing request ↗</button>
-   <small>Submitting opens WhatsApp with your details. Your listing is not published automatically.</small>
+   <p id="listingStatus" class="form-status" role="status" aria-live="polite"></p>
+   <small>Your request will be reviewed before your shop is published. Submitting does not make your listing live.</small>
   </form>
  </div>
 </section>
@@ -132,6 +133,8 @@
  </div>
  <div class="container footer-bottom"><span>© <span id="year"></span> Sitamarhi Bazar. Built to support local businesses.</span><span>Prices and availability are confirmed by the merchant.</span></div>
 </footer>
-<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0" defer></script>
+<script src="supabase-config.js" defer></script>
+<script src="script.js" defer></script>
 </body>
 </html>
